@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=q, initial-scale=1.0">
-    <title>Elden Ring Dungeon Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Elden Ring Dungeon Tracker{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -17,19 +18,21 @@
     <section>
         <div class="container">
             <header class="d-flex justify-content-between align-items-center py-3">
-              <!-- Title on the left -->
-              <h1 class="mb-0">Elden Ring Dungeon Tracker</h1>
-
-              <!-- Navigation Pills -->
+              <h1 class="mb-0">{% block header %}Elden Ring Dungeon Tracker{% endblock %}</h1>
               <ul class="nav nav-pills">
                 <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Zones</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Dungeons/a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Items</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
               </ul>
             </header>
         </div>
     </section>
+
+    {% block content %}
+    <!-- Main content will be inserted here by child templates -->
+    {% endblock %}
+
 </body>
 </html>
