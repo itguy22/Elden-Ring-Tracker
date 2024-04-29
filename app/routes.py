@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template
 from flask import request, redirect, url_for, session
-from .models import db, Item
+from .models import db, Item, Zone
+from flask import jsonify
+
 
 main = Blueprint('main', __name__)
 
@@ -42,3 +44,23 @@ def my_items():
     items = Item.query.filter(Item.id.in_(items_acquired)).all() if items_acquired else []
     return render_template('my_items.html', items=items)
 
+@main.route('/api/zones')
+def zones():
+    zones = Zone.query.all()
+    zones_data = [
+        {
+            'name': zone.name,
+            'description': zone.description,
+            'items': [
+                {'name': item.name, 'description': item.description, 'acquired': item.acquired}
+                for item in zone.items
+            ]
+        } for zone in zones
+    ]
+    return jsonify(zones_data)
+
+@main.route('/zone/<int:zone_id>')
+def zone_detail(zone_id):
+    zone = Zone.query.get_or_404(zone_id)
+    items = Item.query.filter_by(zone_id=zone.id).all()
+    return render_template('zone_detail.html', zone=zone, items=items)

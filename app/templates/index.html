@@ -8,6 +8,10 @@
 <div class="container mt-4">
     <h2>Dungeons</h2>
     <p>Discover and track all the dungeons and items in Elden Ring.</p>
-    <!-- Additional homepage content here -->
+    <ul>
+        {% for zone in zones %}
+        <li><a href="{{ url_for('zone_detail', zone_id=zone.id) }}">{{ zone.name }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
