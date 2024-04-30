@@ -63,4 +63,22 @@ def zones():
 def zone_detail(zone_id):
     zone = Zone.query.get_or_404(zone_id)
     items = Item.query.filter_by(zone_id=zone.id).all()
-    return render_template('zone_detail.html', zone=zone, items=items)
+
+    # Check session data for acquired status
+    acquired_items = session.get('acquired_items', {})
+
+    return render_template('zone_detail.html', zone=zone, items=items, acquired_items=acquired_items)
+
+
+
+@main.route('/save_item_state', methods=['POST'])
+def save_item_state():
+    if 'acquired_items' not in session:
+        session['acquired_items'] = {}
+
+    for key in request.form:
+        item_id = int(key.replace('item', ''))
+        session['acquired_items'][item_id] = request.form[key] == 'on'
+
+    session.modified = True  # Ensure changes to the session are saved
+    return jsonify(status="success", message="Items updated successfully in session!")

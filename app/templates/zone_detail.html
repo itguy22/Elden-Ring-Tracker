@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ zone.name }}{% endblock %}
+
+{% block header %}Items in {{ zone.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Items in {{ zone.name }}</h3>
+    <form id="itemsForm">
+        <ul>
+            {% for item in items %}
+            <li>
+                <input type="checkbox" name="item{{ item.id }}" id="item{{ item.id }}"
+                       {% if acquired_items.get(item.id) %}checked{% endif %}>
+                <label for="item{{ item.id }}">{{ item.name }}</label>
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('itemsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    // Fetch call to save the state of checkboxes (handled in another Flask route)
+    fetch('/save_item_state', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+});
+</script>
+{% endblock %}
