@@ -21,7 +21,8 @@ def add_item():
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    zones = Zone.query.all()
+    return render_template('index.html', zones=zones)
 
 @main.route('/zone/<zone_name>')
 def zone(zone_name):

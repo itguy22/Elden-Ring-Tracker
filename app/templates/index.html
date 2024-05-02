@@ -10,7 +10,7 @@
     <p>Discover and track all the dungeons and items in Elden Ring.</p>
     <ul>
         {% for zone in zones %}
-        <li><a href="{{ url_for('zone_detail', zone_id=zone.id) }}">{{ zone.name }}</a></li>
+        <li><a href="{{ url_for('main.zone_detail', zone_id=zone.id) }}">{{ zone.name }}</a></li>
         {% endfor %}
     </ul>
 </div>
