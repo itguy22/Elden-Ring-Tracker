@@ -6,7 +6,8 @@
 {% block content %}
 <div class="container mt-4">
     <h3>Items in {{ zone.name }}</h3>
-    <form id="itemsForm">
+    <form id="itemsForm" method="post">
+        {{ csrf_token() }}
         <ul>
             {% for item in items %}
             <li>
