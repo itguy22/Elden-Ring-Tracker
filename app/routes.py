@@ -60,14 +60,19 @@ def zones():
     ]
     return jsonify(zones_data)
 
-@main.route('/zone/<int:zone_id>')
+@main.route('/zone/<int:zone_id>', methods=['GET', 'POST'])
 def zone_detail(zone_id):
     zone = Zone.query.get_or_404(zone_id)
-    items = Item.query.filter_by(zone_id=zone.id).all()
+    items = Item.query.filter_by(zone_id=zone_id).all()
 
-    # Check session data for acquired status
+    if request.method == 'POST':
+        # Update session with the items acquired status
+        acquired_items = {key[5:]: True for key in request.form.keys() if key.startswith('item_')}
+        session['acquired_items'] = acquired_items
+        session.modified = True
+        return redirect(url_for('zone_detail', zone_id=zone_id))
+
     acquired_items = session.get('acquired_items', {})
-
     return render_template('zone_detail.html', zone=zone, items=items, acquired_items=acquired_items)
 
 
