@@ -31,3 +31,26 @@ flask db upgrade
 Run the Application:
 
 flask run
+
+The application will be available at http://127.0.0.1:5000/ by default.
+
+Usage
+
+Navigating the Application:
+Visit the homepage to see a list of zones.
+Click on any zone to view detailed information about the items in that zone.
+Check off items as you collect them to track your progress.
+
+Resetting the Database:
+If you need to reset your database, you can run:
+Copy code
+flask db downgrade
+flask db upgrade
+
+Contributing
+
+Contributions are welcome! Please fork the repository and submit pull requests with any enhancements.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+Contact
+If you have any questions or feedback, please contact [Your Email].

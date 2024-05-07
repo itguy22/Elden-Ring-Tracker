@@ -21,5 +21,8 @@ def create_app():
 
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    
+    global migrate
+    migrate = Migrate(app, db)
 
     return app

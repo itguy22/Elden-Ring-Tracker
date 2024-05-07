@@ -19,7 +19,7 @@ def add_data():
             return  # Optionally, create the zone here if it does not exist
 
         # Creating a new item within that zone
-        new_item = Item(name="Academy Glintstone Key", description="Key to open the academy's two sealed gates.", acquired=False, icon="path_to_icon.png", zone=zone)
+        new_item = Item(name="Hookclaws", description="Enhances guard counters.", acquired=False, icon="path_to_icon.png", zone=zone)
         db.session.add(new_item)
 
         # Commit the changes to the database

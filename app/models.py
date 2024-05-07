@@ -13,3 +13,10 @@ class Item(db.Model):
     acquired = db.Column(db.Boolean, default=False)
     icon = db.Column(db.String(255), nullable=True)
     zone_id = db.Column(db.Integer, db.ForeignKey('zone.id'), nullable=False)
+
+class Dungeons(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    acquired = db.Column(db.Boolean, default=False)
+    icon = db.Column(db.String(255), nullable=True)
