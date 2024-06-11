@@ -26,10 +26,13 @@ def upgrade():
     sa.Column('icon', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.drop_table('dungeons')
-    with op.batch_alter_table('item', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('dungeon_id', sa.Integer(), nullable=True))
-        batch_op.create_foreign_key(None, 'dungeon', ['dungeon_id'], ['id'])
+
+
+with op.batch_alter_table('item', schema=None) as batch_op:
+    batch_op.add_column(sa.Column('dungeon_id', sa.Integer(), nullable=True))
+    # Specify a name for the foreign key constraint
+    batch_op.create_foreign_key('fk_item_dungeon_id', 'dungeon', ['dungeon_id'], ['id'])
+
 
     # ### end Alembic commands ###
 
