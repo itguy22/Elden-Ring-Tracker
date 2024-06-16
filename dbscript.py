@@ -2,6 +2,7 @@
 from app import create_app, db  # Assuming db and create_app are accessible here
 from app.models import Zone, Item, Dungeon
 
+# Add new data after database rebuild
 # Create the Flask application instance using the factory function
 app = create_app()
 
@@ -16,7 +17,7 @@ def add_data():
             return  # Optionally, create the zone here if it does not exist
 
         # Creating a new item within that zone
-        new_item = Item(name="Hookclaws", description="Enhances guard counters.", acquired=False, icon="path_to_icon.png", zone=zone)
+        new_item = Item(name="Hookclaws", description="Hookclaws", acquired=False, icon="path_to_icon.png", zone=zone)
         db.session.add(new_item)
 
         # Commit the changes to the database
@@ -49,5 +50,5 @@ def add_item_dungeon(dungeon_name="Siofra River", item_name="Golden Seed"):
 
 # Run this function to add the item
 if __name__ == "__main__":
-    result = add_item_dungeon()
+    result = add_data()
     print(result)
