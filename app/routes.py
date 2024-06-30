@@ -2,6 +2,9 @@ from flask import Blueprint, render_template
 from flask import request, redirect, url_for, session
 from .models import db, Item, Zone
 from flask import jsonify
+from flask import Flask, jsonify
+from . import db
+
 
 
 main = Blueprint('main', __name__)
