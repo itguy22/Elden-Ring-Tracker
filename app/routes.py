@@ -73,7 +73,7 @@ def zone_detail(zone_id):
         acquired_items = {key[5:]: True for key in request.form.keys() if key.startswith('item_')}
         session['acquired_items'] = acquired_items
         session.modified = True
-        return redirect(url_for('zone_detail', zone_id=zone_id))
+        return redirect(url_for('main.zone_detail', zone_id=zone_id))
 
     acquired_items = session.get('acquired_items', {})
     return render_template('zone_detail.html', zone=zone, items=items, acquired_items=acquired_items)

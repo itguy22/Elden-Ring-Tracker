@@ -48,7 +48,16 @@ def add_item_dungeon(dungeon_name="Siofra River", item_name="Golden Seed"):
             return f"Item '{item_name}' already exists in dungeon '{dungeon_name}'."
 
 
-# INSERT INTO zone (name, description) VALUES ('Liurnia', 'Liurnia of the Lakes');
+# INSERT INTO zone (name, description) VALUES ('Cerulean Coast', 'Eastern Coast of the Shadowlands');
+
+# INSERT INTO item (name, description, zone_id) VALUES ('', 'Eastern Coast of the Shadowlands');
+
+# INSERT INTO item (name, description, acquired, icon, zone_id, dungeon_id)
+
+# VALUES ('Golden Seed', 'Increases flask charges', 3, 'icon.png', 5, NULL);
+
+
+
 
 # Run this function to add the item
 if __name__ == "__main__":
