@@ -52,9 +52,8 @@ def add_item_dungeon(dungeon_name="Siofra River", item_name="Golden Seed"):
 
 # INSERT INTO item (name, description, zone_id) VALUES ('', 'Eastern Coast of the Shadowlands');
 
-# INSERT INTO item (name, description, acquired, icon, zone_id, dungeon_id)
-
-# VALUES ('Golden Seed', 'Increases flask charges', 3, 'icon.png', 5, NULL);
+# INSERT INTO item (name, description, icon, zone_id, dungeon_id)
+# VALUES ('Golden Seed', 'Increases flask charges', 'icon.png', 3, NULL);
 
 
 
