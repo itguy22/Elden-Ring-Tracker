@@ -29,7 +29,11 @@ def create_app():
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+
     return app
+
+
+
 
 # Import models to ensure they are registered with SQLAlchemy
 from . import models
