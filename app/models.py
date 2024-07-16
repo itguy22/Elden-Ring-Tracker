@@ -4,6 +4,7 @@ class Zone(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=True)
+    map_image = db.Column(db.String(255), nullable=True)
     items = db.relationship('Item', backref='zone', lazy=True)
 
 class Item(db.Model):
