@@ -13,7 +13,7 @@ jobs:
     env:
       FLASK_APP: app
       FLASK_ENV: development
-      SECRET_KEY: your_secret_key_here
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DATABASE_URL: sqlite:///instance/eldenring.db
 
     steps:
