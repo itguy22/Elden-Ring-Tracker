@@ -12,5 +12,5 @@ jobs:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
+        issue-message: "You have been added to the Elden Ring Tracker repository."
         pr-message: "Message that will be displayed on users' first pull request"
