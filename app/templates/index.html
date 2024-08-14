@@ -10,8 +10,7 @@
 <p>Elden Ring Zones, including new zones from Shadow of the Erdtree!</p>
     <ul>
         {% for zone in zones %}
-        <li><a href="{{ url_for('main.zone_detail', zone_id=zone.id) }}">{{ zone.name }}</a></li>
-        <img src="static/images/gravesite-plains.jpg" Alt="Gravesite Plains Map">
+        <li><a href="{{ url_for('main.zone_detail', zone_id=zone.id) }}">{{ zone.name }}</a></li>w
         {% endfor %}
     </ul>
 </div>
