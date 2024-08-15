@@ -6,7 +6,6 @@ class Zone(db.Model):
     description = db.Column(db.Text, nullable=True)
     map_image = db.Column(db.String(255), nullable=True)
     items = db.relationship('Item', backref='zone', lazy=True)
-    order = db.Column(db.Integer, nullable=False)  # New field to define the order of the zones
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
