@@ -19,4 +19,4 @@ ENV FLASK_ENV=production
 ENV DATABASE_URL=sqlite:///instance/eldenring.db
 
 # Run the application
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "db", "upgrade", "&&", "flask", "run", "--host=0.0.0.0"]

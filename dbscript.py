@@ -56,8 +56,6 @@ def add_item_dungeon(dungeon_name="Siofra River", item_name="Golden Seed"):
 # VALUES ('Golden Seed', 'Increases flask charges', 'icon.png', 3, NULL);
 
 
-
-
 # Run this function to add the item
 if __name__ == "__main__":
     result = add_data()
