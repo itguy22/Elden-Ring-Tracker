@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim
+FROM python:3.10-slim
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
@@ -13,10 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Define environment variable for Flask
-ENV FLASK_APP=app
-ENV FLASK_ENV=production
-ENV DATABASE_URL=sqlite:///instance/eldenring.db
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /app/entrypoint.sh
 
-# Run the application
-CMD ["flask", "db", "upgrade", "&&", "flask", "run", "--host=0.0.0.0"]
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+# Define the entrypoint script
+ENTRYPOINT ["/app/entrypoint.sh"]
