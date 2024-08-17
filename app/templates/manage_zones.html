@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Manage Zones</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.name.label }} {{ form.name() }}</p>
+        <p>{{ form.description.label }} {{ form.description() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <ul>
+    {% for zone in zones %}
+        <li>{{ zone.name }}: {{ zone.description }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

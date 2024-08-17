@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
-from flask import request, redirect, url_for, session
+from flask import request, redirect, url_for, session, flash
 from .models import db, Item, Zone
+from .forms import ZoneForm, ItemForm
 from flask import jsonify
 from flask import Flask, jsonify
 from . import db
@@ -96,3 +97,28 @@ def save_item_state():
 
     session.modified = True  # Ensure changes to the session are saved
     return jsonify(status="success", message="Items updated successfully in session!")
+
+@main.route('/zones', methods=['GET', 'POST'])
+def manage_zones():
+    form = ZoneForm()
+    if form.validate_on_submit():
+        zone = Zone(name=form.name.data)
+        db.session.add(zone)
+        db.session.commit()
+        flash('Zone added successfully!')
+        return redirect(url_for('manage_zones'))
+    zones = Zone.query.all()
+    return render_template('manage_zones.html', form=form, zones=zones)
+
+@main.route('/items', methods=['GET', 'POST'])
+def manage_items():
+    form = ItemForm()
+    form.zone_id.choices = [(zone.id, zone.name) for zone in Zone.query.all()]
+    if form.validate_on_submit():
+        item = Item(name=form.name.data, acquired=form.acquired.data, zone_id=form.zone_id.data)
+        db.session.add(item)
+        db.session.commit()
+        flash('Item added successfully!')
+        return redirect(url_for('manage_items'))
+    items = Item.query.all()
+    return render_template('manage_items.html', form=form, items=items)

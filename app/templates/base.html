@@ -14,21 +14,23 @@
         }
     </style>
     
-    <!--Header Section-->
-    <section>
-        <div class="container">
-            <header class="d-flex justify-content-between align-items-center py-3">
-              <h1 class="mb-0">{% block header %}Elden Ring Dungeon Tracker{% endblock %}</h1>
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Zones</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Dungeons</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Items</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
-              </ul>
-            </header>
-        </div>
-    </section>
+<!--Header Section-->
+<section>
+    <div class="container">
+        <header class="d-flex justify-content-between align-items-center py-3">
+          <h1 class="mb-0">{% block header %}Elden Ring Dungeon Tracker{% endblock %}</h1>
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{{ url_for('index') }}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="{{ url_for('zones') }}" class="nav-link">Zones</a></li>
+            <li class="nav-item"><a href="{{ url_for('dungeons') }}" class="nav-link">Dungeons</a></li>
+            <li class="nav-item"><a href="{{ url_for('items') }}" class="nav-link">Items</a></li>
+            <li class="nav-item"><a href="{{ url_for('contact') }}" class="nav-link">Contact Us</a></li>
+            <li class="nav-item"><a href="{{ url_for('manage_zones') }}" class="nav-link">Add Zones/Items</a></li>
+          </ul>
+        </header>
+    </div>
+</section>
+
 
     {% block content %}
     <!-- Main content will be inserted here by child templates -->
