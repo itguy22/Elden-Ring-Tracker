@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from flask import request, redirect, url_for, session, flash
-from .models import db, Item, Zone
+from .models import db, Item, Zone, Dungeon
 from .forms import ZoneForm, ItemForm
 from flask import jsonify
 from flask import Flask, jsonify
@@ -84,8 +84,6 @@ def zone_detail(zone_id):
     return render_template('zone_detail.html', zone=zone, items=items)
 
 
-
-
 @main.route('/save_item_state', methods=['POST'])
 def save_item_state():
     if 'acquired_items' not in session:
@@ -122,3 +120,8 @@ def manage_items():
         return redirect(url_for('manage_items'))
     items = Item.query.all()
     return render_template('manage_items.html', form=form, items=items)
+
+@main.route('/dungeons')
+def dungeons():
+    dungeons = Dungeon.query.all()
+    return render_template('dungeons.html', dungeons=dungeons)

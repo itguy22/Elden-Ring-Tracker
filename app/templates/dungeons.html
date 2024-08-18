@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Dungeons</h2>
+    <ul>
+        {% for dungeon in dungeons %}
+        <li>
+            <h3>{{ dungeon.name }}</h3>
+            <p>{{ dungeon.description }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
