@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Manage Items</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.name.label }} {{ form.name() }}</p>
+        <p>{{ form.description.label }} {{ form.description() }}</p>
+        <p>{{ form.acquired.label }} {{ form.acquired() }}</p>
+        <p>{{ form.zone_id.label }} {{ form.zone_id() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <h2>Items List</h2>
+    <ul>
+    {% for item in items %}
+        <li>{{ item.name }} ({{ item.zone.name }}) - 
+            <a href="{{ url_for('main.edit_item', item_id=item.id) }}">Edit</a> | 
+            <form action="{{ url_for('main.delete_item', item_id=item.id) }}" method="POST" style="display:inline;">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

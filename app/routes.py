@@ -104,22 +104,54 @@ def manage_zones():
         db.session.add(zone)
         db.session.commit()
         flash('Zone added successfully!')
-        return redirect(url_for('manage_zones'))
+        return redirect(url_for('main.manage_zones'))
     zones = Zone.query.all()
     return render_template('manage_zones.html', form=form, zones=zones)
 
-@main.route('/items', methods=['GET', 'POST'])
+@main.route('/manage-items', methods=['GET', 'POST'])
 def manage_items():
     form = ItemForm()
     form.zone_id.choices = [(zone.id, zone.name) for zone in Zone.query.all()]
+
     if form.validate_on_submit():
-        item = Item(name=form.name.data, acquired=form.acquired.data, zone_id=form.zone_id.data)
-        db.session.add(item)
+        new_item = Item(
+            name=form.name.data,
+            description=form.description.data,
+            acquired=form.acquired.data,
+            zone_id=form.zone_id.data
+        )
+        db.session.add(new_item)
         db.session.commit()
         flash('Item added successfully!')
-        return redirect(url_for('manage_items'))
+        return redirect(url_for('main.manage_items'))
+
     items = Item.query.all()
     return render_template('manage_items.html', form=form, items=items)
+
+@main.route('/edit-item/<int:item_id>', methods=['GET', 'POST'])
+def edit_item(item_id):
+    item = Item.query.get_or_404(item_id)
+    form = ItemForm(obj=item)
+    form.zone_id.choices = [(zone.id, zone.name) for zone in Zone.query.all()]
+
+    if form.validate_on_submit():
+        item.name = form.name.data
+        item.description = form.description.data
+        item.acquired = form.acquired.data
+        item.zone_id = form.zone_id.data
+        db.session.commit()
+        flash('Item updated successfully!')
+        return redirect(url_for('main.manage_items'))
+
+    return render_template('edit_item.html', form=form)
+
+@main.route('/delete-item/<int:item_id>', methods=['POST'])
+def delete_item(item_id):
+    item = Item.query.get_or_404(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    flash('Item deleted successfully!')
+    return redirect(url_for('main.manage_items'))
 
 @main.route('/dungeons')
 def dungeons():
