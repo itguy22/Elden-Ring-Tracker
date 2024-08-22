@@ -1,1 +1,97 @@
-Single-database configuration for Flask.
+# Elden Ring Dungeon Tracker
+
+Elden Ring Dungeon Tracker is a web application designed to help players track items found in each dungeon and zone within Elden Ring. This tool provides an easy way to manage and monitor progress across the various areas of the game. The application allows users to add, delete, and edit zones, dungeons, and items through a user-friendly web interface.
+
+## Features
+
+- **Track Zones and Dungeons:** Add and manage different zones and dungeons in Elden Ring.
+- **Item Management:** Add, delete, and update items for each zone and dungeon, tracking whether they have been acquired.
+- **Responsive Design:** A clean and responsive UI built with Bootstrap.
+- **Data Persistence:** Data is stored in a PostgreSQL/SQLite database to maintain progress across sessions.
+
+## Tech Stack
+
+- **Backend:** Python with Flask
+- **Frontend:** HTML, CSS, Bootstrap, Jinja2
+- **Database:** PostgreSQL/SQLite
+- **Containerization:** Docker
+- **Version Control:** Git
+
+## Installation Instructions
+
+### Prerequisites
+
+- Python 3.8+
+- pip
+- Docker (optional, for containerization)
+
+### Setup Instructions
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/elden-ring-tracker.git
+   cd elden-ring-tracker
+   ```
+
+2. **Create and activate a virtual environment:**
+
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows, use `env\Scripts\activate`
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set up the database:**
+
+   - For SQLite (default):
+     ```bash
+     flask db upgrade
+     ```
+   - For PostgreSQL (if configured):
+     ```bash
+     export DATABASE_URL=postgresql://username:password@localhost/dbname
+     flask db upgrade
+     ```
+
+5. **Run the application:**
+
+   ```bash
+   flask run
+   ```
+
+6. **Access the application:**
+   Open your browser and navigate to `http://127.0.0.1:5000`.
+
+### Docker Setup (Optional)
+
+1. **Build the Docker image:**
+
+   ```bash
+   docker build -t elden-ring-tracker .
+   ```
+
+2. **Run the container:**
+
+   ```bash
+   docker run -p 5000:5000 elden-ring-tracker
+   ```
+
+3. **Access the application:**
+   Open your browser and navigate to `http://localhost:5000`.
+
+## Usage
+
+- **Home Page:** View and track the progress of zones and dungeons.
+- **Manage Zones:** Add, delete, and edit zones.
+- **Manage Dungeons:** View and manage dungeons associated with each zone.
+- **Manage Items:** Track items found within each dungeon.
+
+## Contributing
+
+Please feel free to submit pull requests or create issues if you find bugs or have feature suggestions.
