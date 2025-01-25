@@ -7,9 +7,10 @@ class ZoneForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Add Zone')
 
+
 class ItemForm(FlaskForm):
     name = StringField('Item Name', validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired()])
+    description = StringField('Description')
     acquired = BooleanField('Acquired')
-    zone_id = SelectField('Zone', coerce=int)
-    submit = SubmitField('Add Item')
+    zone_id = SelectField('Zone', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Submit')

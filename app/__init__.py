@@ -7,7 +7,6 @@ import os
 
 # Load environment variables
 load_dotenv()
-secret_key = os.getenv('SECRET_KEY')
 
 # Initialize extensions
 db = SQLAlchemy()
@@ -16,9 +15,11 @@ csrf = CSRFProtect()
 
 def create_app():
     app = Flask(__name__)
+    
+    # Configure the app
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///eldenring.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = secret_key
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # Set Flask secret key from .env
 
     # Initialize extensions with app
     db.init_app(app)
@@ -29,11 +30,10 @@ def create_app():
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-
     return app
-
-
-
 
 # Import models to ensure they are registered with SQLAlchemy
 from . import models
+
+print("Loaded SECRET_KEY:", os.getenv("SECRET_KEY"))
+
